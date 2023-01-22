@@ -1,6 +1,6 @@
 const Quiz = require('../models/quiz');
 
-exports.getAllQuiz = (req, res, next) => {
+exports.getAllQuiz = (req, res) => {
     Quiz.find()
         .then(quizzes => {
             res.status(200).json({
@@ -16,7 +16,7 @@ exports.getAllQuiz = (req, res, next) => {
         });
 }
 
-exports.getQuiz = (req, res, next) => {
+exports.getQuiz = (req, res) => {
     Quiz.findById(req.params.id)
         .then(quiz => {
             if (!quiz) {
@@ -37,7 +37,7 @@ exports.getQuiz = (req, res, next) => {
         });
 }
 
-exports.createQuiz = (req, res, next) => {
+exports.createQuiz = (req, res) => {
     const quiz = new Quiz({
         title: req.body.title,
         questions: req.body.questions
@@ -57,7 +57,7 @@ exports.createQuiz = (req, res, next) => {
         });
 }
 
-exports.participateQuiz = (req, res, next) => {
+exports.participateQuiz = (req, res) => {
     Quiz.findById(req.params.id)
         .then(quiz => {
             if (!quiz) {
